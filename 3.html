@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+
+    function Smallcomponent(props) {
+        return <button onClick={props.handlecount}>Count : {props.count}</button>
+    }
+
+    function Largecomponent() {
+        let [count,setCount] = React.useState(1)
+        function handle(){
+            setCount(count+1);
+        }
+        return <button onClick={handle}>count:{count}</button>
+    }
+
+    function App() {
+
+        let [count, setCount] = React.useState(1);
+
+        let handlecount = () => {
+            setCount(count + 1);
+
+        }
+
+        return <>
+            <Smallcomponent count={count} handlecount={handlecount} />
+            <Smallcomponent count={count} handlecount={handlecount} />
+            <Smallcomponent count={count} handlecount={handlecount} />
+            <Largecomponent/>
+
+        </>
+    }
+
+
+    let dom = ReactDOM.createRoot(document.getElementById("root"));
+    dom.render(<App />);
+</script>
